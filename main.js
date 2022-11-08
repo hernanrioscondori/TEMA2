@@ -4,12 +4,12 @@ const THREE = window.MINDAR.IMAGE.THREE;
 document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
   //  mockWithVideo('tema2.mp4');
-    const mindarThree = new window.MINDAR.IMAGE.mindarThree({
+    const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc: "targets.mind",
     });
     const {renderer, scene, camera} = mindarThree;
-    const light = new THREE.HemisphereLight(0Xffffff, 0Xbbbbbff, 1);
+    const light = new THREE.HemisphereLight(0xffffff, 0xbbbbbff, 1);
     scene.add(light);
  const anchor = mindarThree.addAnchor(0);
     const loader= new GLTFLoader();
