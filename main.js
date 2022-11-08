@@ -1,4 +1,4 @@
-import {mockWithVideo} from 'camera-mock.js';
+import {mockWithVideo} from "camera-mock.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
