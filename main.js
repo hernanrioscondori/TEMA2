@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
   //  mockWithVideo('tema2.mp4');
 
-    const mindarThree = new window.MINDAR.IMAGE.MindARThree({
+    const mindarThree = new window.MINDAR.IMAGE.MindarThree({
       container: document.body,
       imageTargetSrc: "targets.mind",
     });
     const {renderer, scene, camera} = mindarThree;
  const anchor = mindarThree.addAnchor(0);
     const loader= new GLTFLoader();
-    loader.load("scene.gltf",(gltf) =>{
+    loader.load("scene.gltf", (gltf) =>{
      anchor.group.add(gltf.scene);
     });
 
