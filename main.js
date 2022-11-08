@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const {renderer, scene, camera} = mindarThree;
  const anchor = mindarThree.addAnchor(0);
-    const loader= new GLTFoader();
+    const loader= new GLTFLoader();
     loader.load("scene.gltf",(gltf) =>{
      anchor.group.add(gltf.scene);
     });
