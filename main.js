@@ -1,5 +1,5 @@
 import {loadGLTF} from "loader.js";
-import {mockWithVideo} from "camera-mock.js";
+//import {mockWithVideo} from "camera-mock.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,15 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const {renderer, scene, camera} = mindarThree;
 
-    const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
-    scene.add(light);
+    const loader= new GLTFoader();
+    loader.load("scene.gltf",(gltf) =>{
+      const anchor = mindarThree.addAnchor(0);
+    });
 
-    const raccoon = await loadGLTF('scene.gltf');
-    raccoon.scene.scale.set(0.1, 0.1, 0.1);
-    raccoon.scene.position.set(0, -0.4, 0);
+  
 
-    const anchor = mindarThree.addAnchor(0);
-    anchor.group.add(raccoon.scene);
+    
+    
 
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
