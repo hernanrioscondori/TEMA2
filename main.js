@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
       imageTargetSrc: 'targets.mind',
     });
     const {renderer, scene, camera} = mindarThree;
-
+ const anchor = mindarThree.addAnchor(0);
     const loader= new GLTFoader();
     loader.load("scene.gltf",(gltf) =>{
-      const anchor = mindarThree.addAnchor(0);
+     anchor.group.add(gltf.scene);
     });
 
   
