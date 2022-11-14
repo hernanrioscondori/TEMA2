@@ -1,28 +1,33 @@
-import {GLTFLoader} from "GLTFLoader.js";
+import {loadGLTF, loadVideo} from "../../libs/loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
-  //  mockWithVideo('tema2.mp4');
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc: "targets.mind",
+      imageTargetSrc: '../../assets/targets/sintel.mind',
     });
     const {renderer, scene, camera} = mindarThree;
-    const light = new THREE.HemisphereLight(0xffffff, 0xbbbbbff, 1);
-    scene.add(light);
- const anchor = mindarThree.addAnchor(0);
-    const loader= new GLTFLoader();
-    loader.load("scene.gltf", (gltf) =>{
-      gltf.scene.scale.set(0.1, 0.1, 0.1);
-      gltf.scene.position.set(0, -0.4, 0);
-     anchor.group.add(gltf.scene);
+
+    const video = await loadVideo("../../assets/videos/sintel/sintel.mp4");
+    const texture = new THREE.VideoTexture(video);
+
+    const geometry = new THREE.PlaneGeometry(1, 204/480);
+    const material = new THREE.MeshBasicMaterial({map: texture});
+    const plane = new THREE.Mesh(geometry, material);
+
+    const anchor = mindarThree.addAnchor(0);
+    anchor.group.add(plane);
+
+    anchor.onTargetFound = () => {
+      video.play();
+    }
+    anchor.onTargetLost = () => {
+      video.pause();
+    }
+    video.addEventListener( 'play', () => {
+      video.currentTime = 6;
     });
-
-  
-
-    
-    
 
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
